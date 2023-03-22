@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #netframe {
+        float:right; 
+        height: 550px; 
+        width: 80%;
+    }
+
+    #sidebar {
+        float:left; 
+        height: 100%; 
+        width: 20%;
+    }
+
+  html {
+  height: 50%;
+  font-family: 'Roboto Mono', monospace;
+}
+
+body {
+  background: #3a2351dd;
+  color: #FFFFFF;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto Mono', monospace;
+}
+
+div#container {
+  margin: 15px;
+}
+
+div#drop-zone {
+  height: 400px;
+  width: 400px;
+  border: 2px dotted #ebebeb;
+}
+
+div#drop-zone:hover {
+  background-color: gray;
+  border: 1px dotted #000000;
+  cursor: move;
+}
+
+div#content {
+  border: 1px solid #FFF;
+  margin-top: 15px;
+  padding: 10px;
+}
+</style>
+  <head>
+    <meta charset="utf-8">
+    <title>DKEY PROOF OF CONCEPT - ALICE</title>
+  </head>
+  <body>
+    <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+    <script src="./bootstrap.js"></script>
+    <h1>hello, alice...</h1>
+  </body>
+  <p></p>
+  <h2>
+
+</h2>
+<br>
+
+<p></p>
+<div>
+  <h3>#1:&emsp;encrypt file</h3>
+  </div>
+<body>
+    <div id="container">
+       
+        <p></p>
+
+        <div id="netframe">
+            <iframe name="iframe1" style="background: #ffffffbc;" height="100%" width="100%" class="netframe" src="https://www.meixler-tech.com/web-browser-based-file-encryption-decryption.html" id="main_frame"></iframe>
+        </div>
+    </div>
+</body>
+<br>
+<br>
+<br>
+
+
+<p></p>
+<div>
+  <h3>#2:&emsp;upload encrypted file to ipfs</h3>
+  </div>
+<body>
+  <div id="container">
+    <div id="netframe">
+        <embed type="text/html" style="background: #ffffffbc;" height="70%" width="100%" src="https://ipfs-pin.com" >
+    </div>
+</div>
+</body>
+
+<!-- GENERATE ALICE's KEYS -->
+<p></p>
+<div>
+<h3>#3:&emsp;generate keys (copy/paste/save these)</h3>
+</div>
+<div>
+  <button id="generateAliceKeys">generate Alice's keys</button>
+  </div>
+  <br>
+<div>
+  <label for="var1">Alice secret key (bytes):</label>
+  <input type="text" id="var1" style="width: 450px;"/>
+</div>
+<div>
+  <label for="var2">Alice public key (bytes):</label>
+  <input type="text" id="var2" style="width: 450px;"/>
+</div>
+<div>
+  <label for="var3">Alice signing secret key (bytes):</label>
+  <input type="text" id="var3" style="width: 450px;"/>
+</div>
+<div>
+  <label for="var4">Alice verifying public key (bytes):</label>
+  <input type="text" id="var4" style="width: 450px;"/>
+</div>
+<p></p>
+<br>
+<br>
+<br>
+
+
+<!-- CREATE LISTING -->
+
+<p></p>
+<p></p>
+<div >
+  <h3>#4:&emsp;create listing</h3>
+  </div>
+  <div id="div">
+  <p2>
+    <input type="text" id="IPFS_CID" placeholder="Enter IPFS CID of encrypted file (save this w/ keys)" style="width: 450px;"><br>
+    <input type="text" id="AES_Key" placeholder="Enter AES decryption password for encrypted file" style="width: 450px;"><br>
+    <input type="text" id="DKEY_Price" placeholder="Enter price (in ether) for Bob to access encrypted file" style="width: 450px;"><br>
+    <input type="text" id="Alice_PublicKey" placeholder="Enter Alice's public key (ephemeral key for reencryption use only)" style="width: 450px;"><br>
+    <input type="text" id="Number_of_CFrags" placeholder="Enter # of DKeys to be made available for sale" style="width: 450px;"><br>
+    
+    <button type="button" id="Trigger_Policy_Creation">create Listing</button><br>
+    <button type="button" id="Check_Listing">check Listing exists</button>
+  </p2>
+</div>
+
+<p></p>
+<br>
+<p></p>
+
+<div>
+  <p>[ BOB makes a <a href="bob-index.html">payment</a>... ]</p>
+</div>
+
+<p></p>
+<br>
+<p></p>
+
+<div>
+  <h3>#5:&emsp;check listing to see if any Bobs have paid</h3>
+</div>
+  <div>
+  <input type="text" id="IPFS_CID2" placeholder="Enter IPFS CID of encrypted file" style="width: 450px;"><br>
+</div>
+<br>
+  <div>
+    <button id="checkIfPaymentReceived">check for payment events</button>
+    </div>
+    <br>
+  <div>
+    <label for="var5"> # of Bobs that have paid:</label>
+    <input type="text" id="var5" style="width: 450px;"/>
+  </div>
+  <div>
+    <label for="var20"> ipfs cid:</label>
+    <input type="text" id="var20" style="width: 450px;"/>
+  </div>
+  <div>
+    <label for="var6">Bob public key(s) (bytes):</label>
+    <input type="text" id="var6" style="width: 450px;"/>
+  </div>
+  <div>
+    <label for="var7">Capsule (bytes):</label>
+    <input type="text" id="var7" style="width: 450px;"/>
+  </div>
+
+</div>
+
+<p></p>
+<br>
+<br>
+<br>
+<br>
+<p></p>
+
+<div>
+  <h3>#6:&emsp;send cfrag (reencrypted for Bob) to listing</h3>
+  </div>
+  <div id="div">
+  <p2>
+    <input type="text" id="IPFS_CID3" placeholder="Enter IPFS CID of encrypted file" style="width: 450px;"><br>
+    <input type="text" id="Alice_PublicKey" placeholder="Enter Alice's public key (ephemeral key for reencryption use only)" style="width: 450px;"><br>
+    <input type="text" id="Alice_SecretKey" placeholder="Enter Alice's secret key (ephemeral key for reencryption use only)" style="width: 450px;"><br>
+    <input type="text" id="Alice_VerifyingPublicKey" placeholder="Enter Alice's Verifying public key (ephemeral key for reencryption use only)" style="width: 450px;"><br>
+    <input type="text" id="Alice_SigningSecretKey" placeholder="Enter Alice's Signing secret key (ephemeral key for reencryption use only)" style="width: 450px;"><br>
+    <input type="text" id="Bob_PublicKey" placeholder="Enter Bob's public key (ephemeral key for reencryption use only)" style="width: 450px;"><br>
+    <input type="text" id="Capsule_Bytes" placeholder="Enter Capsule bytes" style="width: 450px;"><br>
+
+    <button type="button" id="Trigger_CFrag_Creation">create & send dkey</button>
+  </p2>
+</div>
+
+<p></p>
+<br>
+<p></p>
+
+<!-- transparent elements (need to be present or bootstrap.js/index.js throws error when re-using same js for both html pages)-->
+<div style="opacity: 0;">
+  <button id="Bob_Makes_Payment">null</button>
+  <button id="generateBobKeys">null</button>
+</div>
+
+
+</html>

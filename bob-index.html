@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #netframe {
+        float:right; 
+        height: 250px; 
+        width: 80%;
+    }
+
+    #sidebar {
+        float:left; 
+        height: 100%; 
+        width: 20%;
+    }
+
+  html {
+  height: 50%;
+  font-family: 'Roboto Mono', monospace;
+}
+
+body {
+  background: #02082ccd;
+  color: #FFFFFF;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto Mono', monospace;
+}
+
+div#container {
+  margin: 15px;
+}
+
+
+div#drop-zone {
+  height: 400px;
+  width: 400px;
+  border: 2px dotted #ebebeb;
+}
+
+div#drop-zone:hover {
+  background-color: gray;
+  border: 1px dotted #000000;
+  cursor: move;
+}
+
+div#content {
+  border: 1px solid #FFF;
+  margin-top: 15px;
+  padding: 10px;
+}
+</style>
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <title>DKEY PROOF OF CONCEPT - BOB</title>
+</head>
+<body>
+    <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+    <script src="./bootstrap.js"></script>
+    <h1>hello, bob...</h1>
+</body>
+<p></p>
+<p></p>
+<br>
+<br>
+<br>
+
+
+
+
+<!-- BOB generates keys -->
+<div>
+  <h3>#1:&emsp;generate keys (copy/paste/save these)</h3>
+</div>
+<div>
+  <button id="generateBobKeys">generate Bob's keys</button>
+  </div>
+  <br>
+<div>
+  <label for="var10">Bob secret key (bytes):</label>
+  <input type="text" id="var10" style="width: 450px;"/>
+</div>
+<div>
+  <label for="var11">Bob public key (bytes):</label>
+  <input type="text" id="var11" style="width: 450px;"/>
+</div>
+<br><br><br>
+<br><br><br>
+
+
+
+
+<!-- BOB makes payment -->
+<div>
+  <h3>#2:&emsp;make payment</h3>
+</div>
+<div id="div">
+  <p2>
+    <input type="text" id="IPFS_CID_Bob" placeholder="Enter IPFS CID of encrypted file" style="width: 450px;"><br>
+    <input type="text" id="DKEY_Price_Bob" placeholder="Enter price (in ether) > Alice's specified amount" style="width: 450px;"><br>
+    <input type="text" id="Bob_DecryptingPublicKey" placeholder="Enter Bob's public key" style="width: 450px;"><br><br>
+    <button type="button" id="Bob_Makes_Payment">send txn</button>
+  </p2>
+</div>
+
+<br><br><br>
+<p></p>
+
+<p></p>
+<br>
+<p></p>
+
+<div>
+  <p>[ ALICE <a href="index.html">responds</a> to dkey request... ]</p>
+</div>
+
+<p></p>
+<br>
+<br>
+<p></p>
+
+
+<!-- BOB checks smart contract events to see if ALICE has sent a cfrag yet -->
+<div>
+  <h3>#3:&emsp;grab cfrag from listing</h3>
+</div>
+<div>
+  <input type="text" id="IPFS_CID_Bob2" placeholder="Enter IPFS CID of encrypted file" style="width: 450px;"><br>
+</div>
+<div>
+  <input type="text" id="Bob_DecryptingPublicKey2" placeholder="Enter Bob's public key" style="width: 450px;"><br>
+</div>
+<div>
+  <input type="text" id="Bob_DecryptingSecretKey" placeholder="Enter Bob's secret key" style="width: 450px;"><br>
+</div>
+<br>
+  <div>
+    <button id="checkIfCFragSent">check listing for cfrag & decrypt it to get file's symmetric key</button>
+    </div>
+    <br>
+  <div>
+    <label for="var8"> dkey:</label>
+    <input type="text" id="var8" style="width: 450px;"/>
+  </div>
+  <div>
+    <label for="var9"> symmetric key:</label>
+    <input type="text" id="var9" style="width: 450px;"/>
+  </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<div>
+  <h3>#4:   download file</h3>
+</div>
+<body>
+    <div id="container">
+         
+    
+  
+      <div id="netframe">
+          <embed type="text/html" style="background: #ffffffbc;" height="100%" width="100%" src="https://ipfsgate.com/" >
+      </div>
+  </div>
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+  <h3>#5:&emsp;use symmetric key to decrypt file</h3>
+  </div>
+<body>
+    <div id="container">
+       
+        <p></p>
+
+        <div id="netframe">
+            <iframe name="iframe1" style="background: #ffffffbc;" height="100%" width="100%" class="netframe" src="https://www.meixler-tech.com/web-browser-based-file-encryption-decryption.html" id="main_frame"></iframe>
+        </div>
+    </div>
+</body>
+
+
+
+<!-- 
+  <div id="drop-zone">
+    nomnomnom
+</div>
+-->
+<!-- <script>
+
+const dropZone = document.getElementById('drop-zone');
+const content = document.getElementById('content');
+
+const reader = new FileReader();
+
+if (window.FileList && window.File) {
+  dropZone.addEventListener('dragover', event => {
+    event.stopPropagation();
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+  });
+  
+  dropZone.addEventListener('drop', event => {
+    content.innerHTML = '';
+    event.stopPropagation();
+    event.preventDefault();
+    const files = event.dataTransfer.files;
+    console.log(files);
+    
+    reader.readAsDataURL(files[0]);
+  
+    reader.addEventListener('load', (event) => {
+      content.innerHTML = '';
+      const img = document.createElement('img');
+      img.style.height = '400px';
+      img.style.width = '400px';
+      content.appendChild(img);
+      img.src = event.target.result;
+      img.alt = file.name;
+      
+    });
+  }); 
+}
+
+
+</script> -->
+
+
+
+
+
+<!-- transparent elements (need to be present or bootstrap.js/index.js throws error when re-using same js for both html pages)-->
+<div style="opacity: 0;">
+  <button id="generateAliceKeys">Generate Alice's Keys</button>
+  <button type="button" id="Check_Listing">check Listing exists</button>
+  <button type="button" id="Trigger_Policy_Creation">Create Policy</button>
+  <button id="checkIfPaymentReceived">Check for payment events</button>
+  <button type="button" id="Trigger_CFrag_Creation">Create & Send CFrag</button>
+  </div>
+  <br>
+
+
+
+</html>
